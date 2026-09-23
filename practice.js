@@ -101,8 +101,24 @@ const animeData = [
   { title: "地縛少年花子くん", year: 2020, studio: "Lerche", genre: ["ファンタジー", "学校"], rating: 85 }
 ];
 
-const After_2010 = animeData.filter(function(value){
-    return value.year >= 2020
-})
+// const After_2010 = animeData.filter(value => value.year >= 2010)
 
-console.log(After_2010)
+const filterStudio = animeData.reduce((count,work) => {
+    return work.studio in count ? {...count, [work.studio]: [...count[work.studio], work.title]} : {...count, [work.studio]: [work.title]}
+}, {})
+
+const ratingMean = animeData.reduce((rating,work) => {
+    return work.rating + rating
+},0)/animeData.length
+
+// console.log(After_2010.map(value => value.title))
+console.log(filterStudio)
+console.log(Math.round(ratingMean*10)/10)
+
+filterGenre = (works,genre) => {
+    console.log(works.filter(work => 
+        work.genre.includes(genre)
+    ))
+}
+
+filterGenre(animeData,"ラブコメ")
