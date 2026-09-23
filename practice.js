@@ -125,8 +125,7 @@ console.log(filterGenre(animeData,"ラブコメ"))
 console.log(filterGenre(animeData,"うんち"))
 
 //課題５
-const formatWork = (work) => {
-    const {title,year} = work
+const formatWork = ({title,year}) => {
     return title+'('+year+')'
 }
 console.log(formatWork({ title: "薫る花は凛と咲く", year: 2025, studio: "CloverWorks", genre: ["ラブコメ"], rating: 100 }))
@@ -134,7 +133,7 @@ console.log(formatWork({ title: "薫る花は凛と咲く", year: 2025, studio: 
 //課題６
 
 const makeWatchCounter = (title) => {
-    var count = 0
+    let count = 0
     const countUp = () => {
         count++
         return `${title}: ${count}回目`
