@@ -102,54 +102,53 @@ const animeData = [
 ];
 
 //課題１
-const After_2010 = animeData.filter(value => value.year >= 2010)
+const animeDataAfter2010 = animeData.filter(value => value.year >= 2010).map(work => work.title)
 
 //課題２ 
-const filterStudio = animeData.reduce((count,work) => {
-    return work.studio in count ? {...count, [work.studio]: [...count[work.studio], work.title]} : {...count, [work.studio]: [work.title]}
+const countStudio = animeData.reduce((count,work) => {
+    return work.studio in count ? {...count, [work.studio]: count[work.studio] + 1} : {...count, [work.studio]: 1}
 }, {})
 
 //課題３
-const ratingMean = animeData.reduce((rating,work) => {
-    return work.rating + rating
-},0)/animeData.length
-
-console.log(filterStudio)
-console.log(Math.round(ratingMean*10)/10)
+const ratingMean = Math.round(animeData.reduce((sum,work) => {
+    return work.rating + sum
+},0)/animeData.length * 10) / 10
 
 //課題４
-filterGenre = (works,genre) => {
-    console.log(works.filter(work => 
+const filterGenre = (works,genre) => {
+    return works.filter(work => 
         work.genre.includes(genre)
-    ))
+    )
 }
 
-filterGenre(animeData,"ラブコメ")
+console.log(filterGenre(animeData,"ラブコメ"))
+console.log(filterGenre(animeData,"うんち"))
 
 //課題５
-formatWork = (work) => {
-    const {title,year,studio,genre,rating} = work
-    console.log(title+'('+year+')')
+const formatWork = (work) => {
+    const {title,year} = work
+    return title+'('+year+')'
 }
-formatWork({ title: "薫る花は凛と咲く", year: 2025, studio: "CloverWorks", genre: ["ラブコメ"], rating: 100 })
+console.log(formatWork({ title: "薫る花は凛と咲く", year: 2025, studio: "CloverWorks", genre: ["ラブコメ"], rating: 100 }))
 
 //課題６
 
-const makeWatchCounter = () => {
+const makeWatchCounter = (title) => {
     var count = 0
     const countUp = () => {
         count++
-        console.log(count)
+        return `${title}: ${count}回目`
     }
     return countUp
 }
 
-const counterA = makeWatchCounter()
+const counterA = makeWatchCounter("アニメA")
 counterA()
 counterA()
 counterA()
 
-const counterB = makeWatchCounter()
+const counterB = makeWatchCounter("アニメB")
 counterB()
 counterB()
 counterB()
+console.log(counterA())
