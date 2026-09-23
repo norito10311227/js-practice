@@ -101,20 +101,23 @@ const animeData = [
   { title: "地縛少年花子くん", year: 2020, studio: "Lerche", genre: ["ファンタジー", "学校"], rating: 85 }
 ];
 
-// const After_2010 = animeData.filter(value => value.year >= 2010)
+//課題１
+const After_2010 = animeData.filter(value => value.year >= 2010)
 
+//課題２ 
 const filterStudio = animeData.reduce((count,work) => {
     return work.studio in count ? {...count, [work.studio]: [...count[work.studio], work.title]} : {...count, [work.studio]: [work.title]}
 }, {})
 
+//課題３
 const ratingMean = animeData.reduce((rating,work) => {
     return work.rating + rating
 },0)/animeData.length
 
-// console.log(After_2010.map(value => value.title))
 console.log(filterStudio)
 console.log(Math.round(ratingMean*10)/10)
 
+//課題４
 filterGenre = (works,genre) => {
     console.log(works.filter(work => 
         work.genre.includes(genre)
@@ -122,3 +125,31 @@ filterGenre = (works,genre) => {
 }
 
 filterGenre(animeData,"ラブコメ")
+
+//課題５
+formatWork = (work) => {
+    const {title,year,studio,genre,rating} = work
+    console.log(title+'('+year+')')
+}
+formatWork({ title: "薫る花は凛と咲く", year: 2025, studio: "CloverWorks", genre: ["ラブコメ"], rating: 100 })
+
+//課題６
+
+const makeWatchCounter = () => {
+    var count = 0
+    const countUp = () => {
+        count++
+        console.log(count)
+    }
+    return countUp
+}
+
+const counterA = makeWatchCounter()
+counterA()
+counterA()
+counterA()
+
+const counterB = makeWatchCounter()
+counterB()
+counterB()
+counterB()
