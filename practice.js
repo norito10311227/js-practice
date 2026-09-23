@@ -110,7 +110,7 @@ const countStudio = animeData.reduce((count,work) => {
 }, {})
 
 //課題３
-const ratingMean = Math.round(animeData.reduce((sum,work) => {
+const ratingMeanAAA = Math.round(animeData.reduce((sum,work) => {
     return work.rating + sum
 },0)/animeData.length * 10) / 10
 
