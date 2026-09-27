@@ -1,0 +1,34 @@
+{
+  "permissions": {
+    "deny": [
+      "Edit(src/**)",
+      "Write(src/**)",
+      "Edit(**/*.js)",
+      "Write(**/*.js)",
+      "Edit(**/*.ts)",
+      "Write(**/*.ts)",
+      "Edit(**/*.jsx)",
+      "Write(**/*.jsx)",
+      "Edit(**/*.tsx)",
+      "Write(**/*.tsx)",
+      "Edit(**/*.html)",
+      "Write(**/*.html)",
+      "Edit(**/*.css)",
+      "Write(**/*.css)",
+      "Edit(package.json)",
+      "Edit(tsconfig*.json)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git push:*)",
+      "Bash(git merge:*)",
+      "Bash(git rebase:*)",
+      "Bash(git reset:*)",
+      "Bash(git switch:*)",
+      "Bash(git checkout:*)",
+      "Bash(gh pr create:*)",
+      "Bash(gh pr merge:*)",
+      "Bash(npm install:*)",
+      "Bash(npm i:*)"
+    ]
+  }
+}

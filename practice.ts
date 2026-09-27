@@ -1,3 +1,11 @@
+interface AnimeData {
+    title: string,
+    year: number,
+    studio: string,
+    genre: string[],
+    rating:number
+}
+
 const animeData = [
   { title: "薫る花は凛と咲く", year: 2025, studio: "CloverWorks", genre: ["ラブコメ"], rating: 100 },
   { title: "王様ランキング", year: 2021, studio: "WIT STUDIO", genre: ["アクション"], rating: 95 },
@@ -103,20 +111,24 @@ const animeData = [
 
 //課題１
 const animeDataAfter2010 = animeData.filter(value => value.year >= 2010).map(work => work.title)
+console.log(animeDataAfter2010)
 
 //課題２ 
-const countStudio = animeData.reduce((count,work) => {
-    return work.studio in count ? {...count, [work.studio]: count[work.studio] + 1} : {...count, [work.studio]: 1}
-}, {})
+const countStudio: Record<string,number> = animeData.reduce((count,work) => {
+    count[work.studio] =  (count[work.studio] || 0) + 1;
+    return count
+}, {} as Record<string,number>)
+console.log(countStudio)
 
 //課題３
 const ratingMeanAAA = Math.round(animeData.reduce((sum,work) => {
     return work.rating + sum
 },0)/animeData.length * 10) / 10
+console.log(ratingMeanAAA)
 
 //課題４
-const filterGenre = (works,genre) => {
-    return works.filter(work => 
+const filterGenre = (works: AnimeData[],genre: string) => {
+    return works.filter((work: AnimeData) => 
         work.genre.includes(genre)
     )
 }
@@ -125,14 +137,14 @@ console.log(filterGenre(animeData,"ラブコメ"))
 console.log(filterGenre(animeData,"うんち"))
 
 //課題５
-const formatWork = ({title,year}) => {
+export function formatWork (title: string,year: number) {
     return title+'('+year+')'
 }
-console.log(formatWork({ title: "薫る花は凛と咲く", year: 2025, studio: "CloverWorks", genre: ["ラブコメ"], rating: 100 }))
+console.log(formatWork(animeData[0].title,animeData[0].year))
 
 //課題６
 
-const makeWatchCounter = (title) => {
+const makeWatchCounter = (title: string) => {
     let count = 0
     const countUp = () => {
         count++
